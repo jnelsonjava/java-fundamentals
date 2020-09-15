@@ -1,4 +1,6 @@
 import java.util.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
   public static void main(String[] args) {
@@ -9,7 +11,8 @@ public class Main {
     // test run of flipNHeads method
     flipNHeads(2);
 
-    
+    // test run of clock method
+    clock();
   }
 
   public static String pluralize(String word, int number) {
@@ -36,5 +39,28 @@ public class Main {
       }
     }
     System.out.println("It took " + totalFlips + " flips to flip " + n + " " + pluralize("head", n) + " in a row.");
+  }
+
+  public static void clock() {
+    int currentSecond;
+    // reference for LocalDateTime https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html
+    // Thanks to Vij for helping understand how LocalDateTime works
+    LocalDateTime now;
+    int prevSecond = LocalDateTime.now().getSecond();
+    double operations = 0.0;
+
+    while (true) {
+      operations++;
+      now = LocalDateTime.now();
+      currentSecond = now.getSecond();
+      if (currentSecond == prevSecond) {
+        continue;
+      } else {
+        // reference for DateTimeFormatter https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html
+        System.out.println(now.format(DateTimeFormatter.ofPattern("HH:mm:ss")) + " " + operations/1000000 + " MHz");
+        operations = 0;
+        prevSecond = currentSecond;
+      }
+    }
   }
 }
