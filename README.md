@@ -18,3 +18,5 @@ A repo full of lab work
     - Maps.java methods
       - analyzeWeather: takes in an array of integer arrays representing a month of temperatures. Returns a string listing the high, low, and any missing temps in between.
       - tally: takes in a list of strings and counts the occurance of each string as a vote, finally returning the string with the highest occurance.
+  - [linter project](linter/README.md)
+
