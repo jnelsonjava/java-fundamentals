@@ -4,14 +4,13 @@ import java.util.LinkedList;
 
 public class Restaurant {
 
-    String name;
-    int stars;
-    int priceCategory;
-    LinkedList<Review> reviewList = new LinkedList<>();
+    private String name;
+    private int stars = 0;
+    private int priceCategory;
+    private LinkedList<Review> reviewList = new LinkedList<>();
 
-    public Restaurant(String name, int stars, int priceCategory) {
+    public Restaurant(String name, int priceCategory) {
         this.name = name;
-        this.stars = stars;
         this.priceCategory = priceCategory;
     }
 
@@ -33,7 +32,23 @@ public class Restaurant {
 
     private void updateStars() {
         // intelliJ suggested this
-        int total = reviewList.stream().mapToInt(review -> review.stars).sum();
+        int total = reviewList.stream().mapToInt(Review::getStars).sum();
         stars = total / reviewList.size();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getStars() {
+        return stars;
+    }
+
+    public int getPriceCategory() {
+        return priceCategory;
+    }
+
+    public LinkedList<Review> getReviewList() {
+        return reviewList;
     }
 }
