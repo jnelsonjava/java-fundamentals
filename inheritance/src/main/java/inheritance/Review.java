@@ -5,21 +5,21 @@ public class Review {
     private String author;
     private String body;
     private int stars;
-    private Restaurant restaurant;
+    private Location location;
 
-    public Review(String author, String body, int stars, Restaurant restaurant) {
+    public Review(String author, String body, int stars, Location location) {
         this.author = author;
         this.body = body;
         this.stars = stars;
-        this.restaurant = restaurant;
+        this.location = location;
 
-        restaurant.addReview(this);
+        location.addReview(this);
     }
 
     @Override
     public String toString() {
         return "Review{" +
-                "restaurant='" + restaurant.getName() + '\'' +
+                "location='" + location.getName() + '\'' +
                 ", author='" + author + '\'' +
                 ", stars=" + stars +
                 ", body='" + body + '\'' +
@@ -36,5 +36,9 @@ public class Review {
 
     public int getStars() {
         return stars;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 }
