@@ -2,15 +2,12 @@ package inheritance;
 
 import java.util.LinkedList;
 
-public class Restaurant {
+public class Restaurant extends Location {
 
-    private String name;
-    private int stars = 0;
     private int priceCategory;
-    private LinkedList<Review> reviewList = new LinkedList<>();
 
     public Restaurant(String name, int priceCategory) {
-        this.name = name;
+        super(name);
         this.priceCategory = priceCategory;
     }
 
@@ -18,37 +15,24 @@ public class Restaurant {
     @Override
     public String toString() {
         return "Restaurant{" +
-                "name='" + name + '\'' +
-                ", stars=" + stars +
-                ", priceCategory=" + priceCategory +
-                ", reviewList=" + reviewList +
+                "name='" + this.getName() + '\'' +
+                ", stars=" + this.getStars() +
+                ", priceCategory=" + this.getPriceCategory() +
+                ", reviewList=" + this.getReviewList() +
                 '}';
     }
 
-    public void addReview(Review review) {
-        reviewList.addFirst(review);
-        updateStars();
+    public String getPriceCategory() {
+        String outputDollarSigns = "";
+        for (int i = 0; i < priceCategory; i++) {
+            outputDollarSigns += '$';
+        }
+        return outputDollarSigns;
     }
 
-    private void updateStars() {
-        // intelliJ suggested this
-        int total = reviewList.stream().mapToInt(Review::getStars).sum();
-        stars = total / reviewList.size();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getStars() {
-        return stars;
-    }
-
-    public int getPriceCategory() {
-        return priceCategory;
-    }
-
-    public LinkedList<Review> getReviewList() {
-        return reviewList;
+    public void addReview(TheaterReview review) throws Exception {
+        // reference for getting a simple class name https://stackoverflow.com/questions/2690333/how-to-get-the-name-of-a-class-without-the-package
+        System.out.println(String.format("Theater Reviews are not accepted by %ss.", this.getClass().getSimpleName()));
+        throw new Exception("Movie reviews are not accepted");
     }
 }
